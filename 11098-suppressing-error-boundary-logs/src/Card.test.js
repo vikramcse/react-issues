@@ -11,9 +11,12 @@ test("Card", () => {
   };
   let index = 1;
 
+  Error.prototype.suppressReactErrorLogging = true;
   try {
     const component = ReactTestUtils.renderIntoDocument(
       <Card item={item} index={index} />
     );
-  } catch (e) {}
+  } finally {
+    Error.prototype.suppressReactErrorLogging = false;
+  }
 });
